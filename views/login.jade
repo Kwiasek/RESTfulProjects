@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div.container-fluid.vh-100
+    div.d-flex.justify-content-center.align-items-center
+      form(method="POST" action="/login")
+        div.form-floating.mb-3
+          input.form-control#username(type="text" name="username" required placeholder="")
+          label(for="username") Username
+        div.form-floating.mb-3
+          input.form-control#password(type="password" name="password" required placeholder="")
+          label(for="password") Password
+        button.btn.btn-primary(type="submit") Login

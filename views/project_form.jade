@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  form.form(method="POST" enctype="multipart/form-data")
+    div.form-floating.mb-3
+      input.form-control#name(type="text" name="name" placeholder="" value=(project == undefined ? "" : project.name))
+      label(for="name") Name
+    div.form-floating.mb-3  
+      input.form-control#desc(type="text" name="desc" placeholder="" value=(project == undefined ? "" : project.desc))
+      label(for="desc") Description
+    div.form-floating.mb-3
+      input.form-control#liveUrl(type="text" name="liveUrl" placeholder="" value=(project == undefined ? "" : project.liveUrl))
+      label(for="liveUrl") Live Server url
+    div.form-floating.mb-3
+      input.form-control#repoUrl(type="text" name="repoUrl" placeholder="" value=(project == undefined ? "" : project.repoUrl))
+      label(for="repoUrl") Github repo url
+    if !project
+      div.mb-3
+        label(for="image") Upload image
+        input.form-control#image(type="file" name="image" placeholder="" required)
+    else
+      div.mb-3.col-sm-3
+        p Uploaded image
+        img.img-thumbnail.mb-3(src="data:image/webp;base64,#{project.img.data.toString('base64')}")
+      div.mb-3
+        label(for="image") Change image
+        input.form-control#image(type="file" name="image" placeholder="")
+      a(href=project.url+"/delete")
+        button.btn.btn-outline-danger.me-3(type="button") Delete
+    button.btn.btn-primary(type="submit") Submit
+
