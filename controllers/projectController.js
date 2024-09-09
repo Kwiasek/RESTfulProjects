@@ -31,10 +31,7 @@ exports.create_project_post = asyncHandler(async (req, res, next) => {
     desc: req.body.desc,
     liveUrl: req.body.liveUrl,
     repoUrl: req.body.repoUrl,
-    img: {
-      data: req.file.buffer,
-      contentType: req.file.mimetype,
-    },
+    img: req.body.image,
   });
 
   await newProject.save();
@@ -75,20 +72,16 @@ exports.project_edit_post = asyncHandler(async (req, res, next) => {
     err.status = 404;
     return next(err);
   }
+
   const newProject = new Project({
     name: req.body.name,
     desc: req.body.desc,
     liveUrl: req.body.liveUrl,
     repoUrl: req.body.repoUrl,
+    img: req.body.image,
     _id: req.params.id,
   });
 
-  if (req.file !== undefined) {
-    newProject.img = {
-      data: req.file.buffer,
-      contentType: req.file.mimetype,
-    };
-  }
   await Project.findByIdAndUpdate(req.params.id, newProject, {}).exec();
 
   res.redirect("/projects/show");

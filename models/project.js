@@ -7,7 +7,7 @@ const Project = new Schema({
   liveUrl: { type: String, required: true },
   repoUrl: { type: String, required: true },
   date: { type: Date, default: Date.now() },
-  img: { data: Buffer, contentType: String },
+  img: { type: String, required: true },
 });
 
 Project.virtual("url").get(function () {

@@ -17,7 +17,7 @@ mongoose.set("strictQuery", false);
 
 main().catch((err) => console.log(err));
 async function main() {
-  await mongoose.connect(db);
+  await mongoose.connect(db, { dbName: "test_images_change" });
 }
 
 passport.use(

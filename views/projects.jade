@@ -16,7 +16,7 @@ block content
         else 
           each project in projects
               div.col-sm-3.d-flex.flex-column.justify-content-between.p-4.rounded-3.mb-3.mx-2.border.border-black
-                img.img-thumbnail.mb-3(src="data:#{project.img.contentType};base64,#{project.img.data.toString('base64')}")
+                img.img-thumbnail.mb-3(src="#{project.img}")
                 h2= project.name
                 p= project.desc
                 div.d-flex.align-items-center.justify-content-around.mb-1

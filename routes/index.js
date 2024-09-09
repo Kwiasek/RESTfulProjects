@@ -2,15 +2,8 @@ var express = require("express");
 var router = express.Router();
 const projects = require("../controllers/projectController");
 const users = require("../controllers/userController");
-// Setup for uploading images
-
-const multer = require("multer");
 
 const url = process.env.MONGODB_URI;
-
-const storage = multer.memoryStorage();
-
-const upload = multer({ storage });
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -29,15 +22,11 @@ router.get("/projects/show", projects.projects_show);
 
 router.get("/project/create", projects.create_project_get);
 
-router.post(
-  "/project/create",
-  upload.single("image"),
-  projects.create_project_post
-);
+router.post("/project/create", projects.create_project_post);
 
 router.get("/project/:id", projects.project_edit_get);
 
-router.post("/project/:id", upload.single("image"), projects.project_edit_post);
+router.post("/project/:id", projects.project_edit_post);
 
 router.get("/project/:id/delete", projects.project_delete);
 
